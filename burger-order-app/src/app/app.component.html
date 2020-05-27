@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Burger Order App</h1>
+    <div class="btn-group">
+      <button class="btn btn-primary" (click)="onOrderState()" >Start Order</button>
+      <button class="btn btn-danger" (click)="onEmptyState()">Cancel Order</button>
+    </div>
+
+  <hr>
+    <app-burger></app-burger>  
+     
+  <hr>
+    <app-order-menu *ngIf = 'orderState'></app-order-menu>
+
+  
+</div>
+

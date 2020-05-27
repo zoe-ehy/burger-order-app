@@ -1,0 +1,38 @@
+<div class='row'>
+
+  <div class='col-sm-2'>
+    <div class="card">
+      <div class="card-body text-center">
+          {{ingredient.name}} 
+          <br> 
+          (RM{{ingredient.price.toFixed(2)}})
+        </div>
+    </div>
+  </div>
+
+
+  <div class='col-sm-2'>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <button class="btn btn-danger" (click)='onDeleteIngredient()' >-</button>
+      </div>
+  
+      <input class="form-control text-center" placeholder="1" >
+  
+      <div class="input-group-append">
+          <button class="btn btn-success" (click)='onAddIngredient()' >+</button>
+        </div>  
+  </div>
+  </div>
+
+  
+
+</div>
+
+  
+  
+
+
+
+
+

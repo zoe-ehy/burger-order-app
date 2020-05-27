@@ -1,0 +1,18 @@
+<h2>Burger State</h2>
+<div class="col-sm-2">
+    <ul class="list-group text-center">
+        <div *ngFor="let ingredient of ingredients" >
+        
+            <li class="list-group-item">
+                <app-burger-ingredient [name] = "ingredient.name"></app-burger-ingredient>
+            </li>
+        
+        </div>
+    </ul>       
+
+    Price: RM{{totalPrice.toFixed(2)}}
+</div>
+
+
+
+

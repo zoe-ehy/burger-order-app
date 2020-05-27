@@ -1,0 +1,10 @@
+<h3>Choose the ingredients for your burger!</h3>
+<div class="container">
+    <div *ngFor = 'let type of allTypes'>
+        <app-menu-item [ingredient] = 'type'></app-menu-item>
+    </div>
+    
+</div>
+
+
+
