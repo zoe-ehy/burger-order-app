@@ -20,9 +20,14 @@
       <input class="form-control text-center" type="number" min="0" max="3" [value]=amount (keyup)="onKey($event)" onKeyPress="if(this.value.length==1) return false;"  >
       <div class="input-group-append">
           <button class="btn btn-success" (click)='onAddIngredient()' >+</button>
-        </div>  
+      </div> 
+    </div> 
   </div>
+
+  <div class='col-sm-6'>
+    <p *ngIf="invalidNumberInput"> Please only enter a number between 0 and 3! </p>
   </div>
+
 
 </div>
 

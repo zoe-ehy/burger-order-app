@@ -11,6 +11,7 @@ import { BurgerService } from 'src/app/burger.service';
 export class MenuItemComponent implements OnInit {
   @Input() ingredient: Ingredient;
   amount = 1;
+  invalidNumberInput = false;
 
   constructor(private burgerService: BurgerService) { }
 
@@ -19,6 +20,7 @@ export class MenuItemComponent implements OnInit {
 
   onAddIngredient(){
     if (this.amount < 3) {
+      this.invalidNumberInput = false;
       this.burgerService.addIngredient(this.ingredient);
       this.amount++;
     } 
@@ -27,6 +29,7 @@ export class MenuItemComponent implements OnInit {
 
   onDeleteIngredient(){
     if (this.amount > 0) {
+      this.invalidNumberInput = false;
       this.burgerService.deleteIngredient(this.ingredient);
       this.amount--;
     }
@@ -34,6 +37,7 @@ export class MenuItemComponent implements OnInit {
 
   onKey(event) {
     if (event.key < 4 && event.key > -1) {
+      this.invalidNumberInput = false;
       let difference = this.amount - event.key;
 
       if (difference > 0) {
@@ -42,13 +46,15 @@ export class MenuItemComponent implements OnInit {
       this.amount--;
           console.log(this.burgerService.burgerStack);
         }
-        
+
       } else {
         for (let i = 0; i < (difference*-1); i++) {
           this.burgerService.addIngredient(this.ingredient);
           this.amount++;
         }
       }
+    } else {
+        this.invalidNumberInput = true;
     }
   }
 
