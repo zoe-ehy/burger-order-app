@@ -17,7 +17,7 @@
         <button class="btn btn-danger" (click)='onDeleteIngredient()' >-</button>
       </div>
   
-      <input class="form-control text-center" placeholder="1" >
+      <input class="form-control text-center" [placeholder]="amount" >
   
       <div class="input-group-append">
           <button class="btn btn-success" (click)='onAddIngredient()' >+</button>

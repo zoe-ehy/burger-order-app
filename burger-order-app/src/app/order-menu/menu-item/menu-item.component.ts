@@ -10,6 +10,7 @@ import { BurgerService } from 'src/app/burger.service';
 
 export class MenuItemComponent implements OnInit {
   @Input() ingredient: Ingredient;
+  amount = 1;
 
   constructor(private burgerService: BurgerService) { }
 
@@ -17,11 +18,19 @@ export class MenuItemComponent implements OnInit {
   }
 
   onAddIngredient(){
-    this.burgerService.addIngredient(this.ingredient);
+    if (this.amount < 3) {
+      this.burgerService.addIngredient(this.ingredient);
+      this.amount++;
+    } 
+    
   }
 
   onDeleteIngredient(){
-    this.burgerService.deleteIngredient(this.ingredient);
+    if (this.amount > 0) {
+      this.burgerService.deleteIngredient(this.ingredient);
+      this.amount--;
+    }
+    
   }
 
 }
