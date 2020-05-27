@@ -22,4 +22,6 @@ export class BurgerComponent implements OnInit {
     this.burgerService.stackEmitter.subscribe(newStack =>this.ingredients = newStack);
   }
 
+
+
 }

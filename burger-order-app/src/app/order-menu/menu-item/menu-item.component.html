@@ -17,15 +17,12 @@
         <button class="btn btn-danger" (click)='onDeleteIngredient()' >-</button>
       </div>
   
-      <input class="form-control text-center" [placeholder]="amount" >
-  
+      <input class="form-control text-center" type="number" min="0" max="3" [value]=amount (keyup)="onKey($event)" onKeyPress="if(this.value.length==1) return false;"  >
       <div class="input-group-append">
           <button class="btn btn-success" (click)='onAddIngredient()' >+</button>
         </div>  
   </div>
   </div>
-
-  
 
 </div>
 

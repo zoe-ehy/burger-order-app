@@ -30,7 +30,26 @@ export class MenuItemComponent implements OnInit {
       this.burgerService.deleteIngredient(this.ingredient);
       this.amount--;
     }
-    
+  }
+
+  onKey(event) {
+    if (event.key < 4 && event.key > -1) {
+      let difference = this.amount - event.key;
+
+      if (difference > 0) {
+        for (let i = 0; i < difference; i++) {
+          this.burgerService.deleteIngredient(this.ingredient);
+      this.amount--;
+          console.log(this.burgerService.burgerStack);
+        }
+        
+      } else {
+        for (let i = 0; i < (difference*-1); i++) {
+          this.burgerService.addIngredient(this.ingredient);
+          this.amount++;
+        }
+      }
+    }
   }
 
 }
