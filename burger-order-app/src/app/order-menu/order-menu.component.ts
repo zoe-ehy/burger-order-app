@@ -9,12 +9,12 @@ import { BurgerService } from '../burger.service';
 })
 export class OrderMenuComponent implements OnInit {
   allTypes: Ingredient[];
+  burgerStack: Ingredient[];
 
   constructor(private burgerService: BurgerService) { }
 
   ngOnInit(): void {
     this.allTypes = this.burgerService.allTypes;
-    console.log(this.allTypes);
   }
 
 }

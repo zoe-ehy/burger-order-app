@@ -21,9 +21,11 @@ export class BurgerService {
   constructor() { }
 
   startOrder() {
-    this.burgerStack.splice(1, 0, ...this.allTypes);
+    this.burgerStack.splice(1,0,...this.allTypes)
+                         
     this.totalPrice = 7.50;
     this.priceEmitter.emit(this.totalPrice);
+   // this.stackEmitter.emit(this.burgerStack);
     //this.p.next(this.totalPrice)
   }
 
@@ -35,8 +37,10 @@ export class BurgerService {
   }
 
   deleteIngredient(ingredient: Ingredient) {
-    var i = this.burgerStack.indexOf(ingredient);
-    this.burgerStack.splice(i, 1);
+
+    this.burgerStack.splice(this.burgerStack.indexOf(ingredient), 1)
+    this.stackEmitter.emit(this.burgerStack);
+
     this.totalPrice -= ingredient.price;
     this.priceEmitter.emit(this.totalPrice);
   }

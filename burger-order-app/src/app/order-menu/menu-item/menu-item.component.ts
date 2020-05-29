@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
 import { Ingredient } from '../../ingredient.model'
 import { BurgerService } from 'src/app/burger.service';
 
@@ -9,52 +11,63 @@ import { BurgerService } from 'src/app/burger.service';
 })
 
 export class MenuItemComponent implements OnInit {
+
+  userAmount = new FormControl(1, [Validators.required, Validators.min(0), Validators.max(3), this.invalidInput.bind(this)]);
+
   @Input() ingredient: Ingredient;
   amount = 1;
-  invalidNumberInput = false;
+
 
   constructor(private burgerService: BurgerService) { }
 
   ngOnInit(): void {
   }
 
-  onAddIngredient(){
-    if (this.amount < 3) {
-      this.invalidNumberInput = false;
-      this.burgerService.addIngredient(this.ingredient);
-      this.amount++;
-    } 
-    
-  }
-
-  onDeleteIngredient(){
-    if (this.amount > 0) {
-      this.invalidNumberInput = false;
-      this.burgerService.deleteIngredient(this.ingredient);
-      this.amount--;
-    }
-  }
-
-  onKey(event) {
-    if (event.key < 4 && event.key > -1) {
-      this.invalidNumberInput = false;
-      let difference = this.amount - event.key;
+  onType(event) {
+    this.userAmount.setValue(event.key)
+    if (event.key >=0 && event.key <=3) {
+      
+      let difference = this.amount  - this.userAmount.value;
 
       if (difference > 0) {
         for (let i = 0; i < difference; i++) {
+
           this.burgerService.deleteIngredient(this.ingredient);
-      this.amount--;
-          console.log(this.burgerService.burgerStack);
+          this.amount--
+          console.log(this.burgerService.burgerStack)
         }
 
       } else {
         for (let i = 0; i < (difference*-1); i++) {
           this.burgerService.addIngredient(this.ingredient);
-          this.amount++;
+          this.amount++
+          console.log(this.burgerService.burgerStack)
+
         }
       }
-    } else {
-        this.invalidNumberInput = true;
+    }
+  }
+
+  invalidInput(control: FormControl) {
+    if (control.value == null) {
+      return {"invalidInput": true};
+    }
+    else if (control.value >=0 && control.value <=3) {
+      return null;
+    } 
+  }
+
+  onIncrement() {
+    if (this.userAmount.value < 3) {
+      this.userAmount.setValue(this.userAmount.value + 1);
+      this.burgerService.addIngredient(this.ingredient);
+    }
+  }
+
+  onDecrement() {
+    if (this.userAmount.value > 0) {
+      this.userAmount.setValue(this.userAmount.value - 1);
+      this.burgerService.deleteIngredient(this.ingredient);
     }
   }
 

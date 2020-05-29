@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { BurgerService} from './burger.service';
 
@@ -8,7 +9,6 @@ import { OrderMenuComponent } from './order-menu/order-menu.component';
 import { BurgerComponent } from './burger/burger.component';
 import { BurgerIngredientComponent } from './burger/burger-ingredient/burger-ingredient.component';
 import { MenuItemComponent } from './order-menu/menu-item/menu-item.component';
-import { CurrencyPipe } from './currency.pipe';
   
 @NgModule({
   declarations: [
@@ -16,11 +16,11 @@ import { CurrencyPipe } from './currency.pipe';
     OrderMenuComponent,
     BurgerComponent,
     BurgerIngredientComponent,
-    MenuItemComponent,
-    CurrencyPipe
+    MenuItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [BurgerService],
   bootstrap: [AppComponent]
