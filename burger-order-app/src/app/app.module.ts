@@ -8,6 +8,7 @@ import { OrderMenuComponent } from './order-menu/order-menu.component';
 import { BurgerComponent } from './burger/burger.component';
 import { BurgerIngredientComponent } from './burger/burger-ingredient/burger-ingredient.component';
 import { MenuItemComponent } from './order-menu/menu-item/menu-item.component';
+import { CurrencyPipe } from './currency.pipe';
   
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MenuItemComponent } from './order-menu/menu-item/menu-item.component';
     OrderMenuComponent,
     BurgerComponent,
     BurgerIngredientComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    CurrencyPipe
   ],
   imports: [
     BrowserModule

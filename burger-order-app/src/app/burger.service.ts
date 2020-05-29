@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Ingredient } from './ingredient.model';
 import { IngredientService } from './ingredient.service';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,16 @@ export class BurgerService {
   priceEmitter = new EventEmitter<number>();
   stackEmitter = new EventEmitter<Ingredient[]>();
 
+  private p = new Subject<number>();
+  p$: Observable<any> = this.p.asObservable();
+
   constructor() { }
 
   startOrder() {
     this.burgerStack.splice(1, 0, ...this.allTypes);
     this.totalPrice = 7.50;
     this.priceEmitter.emit(this.totalPrice);
+    //this.p.next(this.totalPrice)
   }
 
   addIngredient(ingredient: Ingredient) {
